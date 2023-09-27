@@ -48,5 +48,5 @@ Thumbs.db
 *.mov
 *.wmv
 
-#mochareports
-mochawsome/
+#playwright reports
+playwright-report/
