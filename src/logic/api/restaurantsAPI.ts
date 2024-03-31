@@ -1,6 +1,6 @@
 
 import jsonConfig from '../../../config.json';
-import { getRequest, postRequest } from '../../infra/rest/api-request';
+import { getRequest, postRequest, patchRequest } from '../../infra/rest/api-request';
 import { Restaurant } from './API-Request/get-restaurants-request';
 
 const baseUrl = jsonConfig.baseUrl + '/';
@@ -24,4 +24,9 @@ const getRestaurantById = async (id: number) => {
 
 }
 
-export default { getRestaurants, resetServer, createRestaurant, getRestaurantById }
+
+const fullUpdateRestaurant = async (body: Restaurant) => {
+    return patchRequest(baseUrl + 'restaurant/' + body.id, body)
+}
+
+export default { getRestaurants, resetServer, createRestaurant, getRestaurantById, fullUpdateRestaurant }
