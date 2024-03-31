@@ -31,4 +31,22 @@ test.describe('Base API test', () => {
         expect(getByIdResponse.status()).toEqual(200)
         expect(getByIdResponse.ok).toBeTruthy
     })
+
+    test('Edit restaurants via api', async () => {
+        //Arrange
+        const myNewRest = { address: 'cyprus', id: 888, name: 'olena' , score: 5.0 }
+        await restaurantsAPI.createRestaurant(myNewRest);
+
+        //Act
+        const updated = {address: 'Ukraine', id:888, name: 'olena1' , score: 4.0 }
+        const getByIdResponse = await restaurantsAPI.getRestaurantById(myNewRest.id);
+        await restaurantsAPI.fullUpdateRestaurant(updated) 
+        
+        //Assert
+        const returnRest = (await getByIdResponse.json())['data']
+        expect(returnRest.address).toEqual('Ukraine')
+        
+    })
 })
+
+
