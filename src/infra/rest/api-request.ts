@@ -16,4 +16,12 @@ const getRequest = async (url: string, param?: any) => {
     })
 }
 
-export { postRequest, getRequest }
+
+const patchRequest = async (url: string, data: any) => {
+    const context = await request.newContext()
+    return await context.patch(url, {
+        data: data
+    })
+}
+
+export { postRequest, getRequest, patchRequest }
